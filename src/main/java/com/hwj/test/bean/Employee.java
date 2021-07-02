@@ -15,4 +15,5 @@ public class Employee {
     private String empName;
     private String email;
     private Integer gender;
+    private String loginAccount;
 }

@@ -3,20 +3,64 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-    <environments default="development">
-        <environment id="development">
+
+    <!--和Spring的context：property-placeholder一样，引用外部文件-->
+    <!--resource：从类路径下开始引用
+        url：从磁盘路径或者网络路径下开始引用-->
+    <properties resource="dbconfig.properties"></properties>
+
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--类型别名（不推荐使用）-->
+    <typeAliases>
+        <!--typeAlias：就是为一个javaBean起别名，别名默认就是类名（不区分大小写）-->
+        <!--alias：指定一个别名-->
+        <typeAlias type="com.hwj.test.bean.Employee" alias="Employee"/>
+        <!--批量起别名，默认别名就是类名-->
+        <package name="com.hwj.bean"/>
+    </typeAliases>
+
+    <!--类型处理器-->
+<!--    <typeHandlers>-->
+<!--        &lt;!&ndash;自定义好的类型处理器&ndash;&gt;-->
+<!--        <typeHandler handler=""/>-->
+<!--    </typeHandlers>-->
+
+
+    <!--environments配置多个环境
+        environment：配置一个具体的环境，都需要一个事务管理器和一个数据源。
+        后来数据源和事务管理器都是Spring来做。-->
+    <environments default="dev">
+        <environment id="prod">
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
-                <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://localhost:3306/mybatis?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=UTC&amp;rewriteBatchedStatements=true"/>
-                <property name="username" value="root"/>
-                <property name="password" value="123456"/>
+                <property name="driver" value="${prod_driverclass}"/>
+                <property name="url" value="${prod_jdbcurl}"/>
+                <property name="username" value="${prod_username}"/>
+                <property name="password" value="${prod_password}"/>
+            </dataSource>
+        </environment>
+
+        <environment id="dev">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${driverclass}"/>
+                <property name="url" value="${jdbcurl}"/>
+                <property name="username" value="${username}"/>
+                <property name="password" value="${password}"/>
             </dataSource>
         </environment>
     </environments>
-    <!--引入我们自己编写的每一个接口的实现文件-->
+
+
+
+    <!--写好的sql映射文件需要使用mappers注册进来-->
     <mappers>
-        <!--resource：表示从类路径下找资源-->
+        <!--resource：表示从类路径下找资源
+            url：可以从磁盘或者网络路径引用
+            class：直接引用接口的全类名-->
         <mapper resource="EmployeeDao.xml"/>
     </mappers>
 </configuration>

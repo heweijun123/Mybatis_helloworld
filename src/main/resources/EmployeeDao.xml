@@ -9,6 +9,23 @@
     resultType：指定方法运行后的返回值类型；（查询操作必须指定的）
     #{属性名}：代表取出传递过来的某个参数的值-->
     <select id="getEmpById" resultType="com.hwj.test.bean.Employee">
+        <!--sql语句不要写分号-->
         select * from t_employee where id=#{id}
     </select>
+
+    <!--增删改不用写返回值类型；增删改是返回影响多少行
+        mybatis自动判断，如果是数字（int，long）
+        如果是boolean（影响0行自动封装false，否则true）-->
+    <update id="updateEmployee">
+        update t_employee set empname=#{empname},gender=#{empname},email=#{empname} where id=#{id}
+    </update>
+
+    <delete id="deleteEmployee">
+        delete from t_employee where id=#{id}
+    </delete>
+
+    <insert id="insertEmployee">
+        insert into t_employee(empname,gender,email) values(#{empName},#{gender},#{email})
+    </insert>
+
 </mapper>
