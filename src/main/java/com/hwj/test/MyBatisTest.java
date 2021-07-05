@@ -1,7 +1,7 @@
 package com.hwj.test;
 
-import com.hwj.test.bean.Employee;
-import com.hwj.test.dao.EmployeeDao;
+import com.hwj.bean.Employee;
+import com.hwj.dao.EmployeeDao;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;

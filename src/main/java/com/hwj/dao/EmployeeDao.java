@@ -1,6 +1,6 @@
-package com.hwj.test.dao;
+package com.hwj.dao;
 
-import com.hwj.test.bean.Employee;
+import com.hwj.bean.Employee;
 
 public interface EmployeeDao {
 

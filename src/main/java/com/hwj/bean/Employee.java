@@ -1,4 +1,4 @@
-package com.hwj.test.bean;
+package com.hwj.bean;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

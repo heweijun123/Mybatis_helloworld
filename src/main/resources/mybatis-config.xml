@@ -17,7 +17,7 @@
     <typeAliases>
         <!--typeAlias：就是为一个javaBean起别名，别名默认就是类名（不区分大小写）-->
         <!--alias：指定一个别名-->
-        <typeAlias type="com.hwj.test.bean.Employee" alias="Employee"/>
+        <typeAlias type="com.hwj.bean.Employee" alias="Employee"/>
         <!--批量起别名，默认别名就是类名-->
         <package name="com.hwj.bean"/>
     </typeAliases>
@@ -60,7 +60,11 @@
     <mappers>
         <!--resource：表示从类路径下找资源
             url：可以从磁盘或者网络路径引用
-            class：直接引用接口的全类名-->
-        <mapper resource="EmployeeDao.xml"/>
+            class：直接引用接口的全类名，可以将xml放在和dao接口同目录下，而且文件名和接口名一致-->
+<!--        <mapper resource="EmployeeDao.xml"/>-->
+<!--        <mapper class="com.hwj.dao.EmployeeDao"/>-->
+
+        <!--批量注册-->
+        <package name="com.hwj.dao"/>
     </mappers>
 </configuration>
