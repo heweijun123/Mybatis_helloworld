@@ -25,8 +25,8 @@
     <!--类型处理器-->
 <!--    <typeHandlers>-->
 <!--        &lt;!&ndash;自定义好的类型处理器&ndash;&gt;-->
-<!--        <typeHandler handler=""/>-->
-<!--    </typeHandlers>-->
+<!--        <typeHandler handler=""/>   -->
+<!--    </typeHandlers> -->
 
 
     <!--environments配置多个环境
