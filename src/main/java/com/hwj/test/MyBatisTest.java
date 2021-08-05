@@ -2,6 +2,7 @@ package com.hwj.test;
 
 import com.hwj.bean.Employee;
 import com.hwj.dao.EmployeeDao;
+import org.apache.ibatis.binding.MapperProxy;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -11,6 +12,7 @@ import org.junit.Test;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Proxy;
 
 public class MyBatisTest {
 
@@ -33,6 +35,10 @@ public class MyBatisTest {
         //2、获取和数据库的一次会话
         SqlSession sqlSession = sqlSessionFactory.openSession();
         EmployeeDao employeeDao = sqlSession.getMapper(EmployeeDao.class);
+        if(employeeDao instanceof MapperProxy) {
+
+            System.out.println("proxy");
+        }
 
         try {
 
@@ -50,6 +56,8 @@ public class MyBatisTest {
         //2、获取和数据库的一次会话
         SqlSession sqlSession = sqlSessionFactory.openSession(true);
         EmployeeDao employeeDao = sqlSession.getMapper(EmployeeDao.class);
+        String s1 = sqlSession.toString();
+        String s = employeeDao.toString();
 
         try {
 
